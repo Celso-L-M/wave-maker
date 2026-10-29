@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk";
+    --font-body: "DM Sans";
+    --font-mono: "JetBrains Mono";
+    --radius: 0.5rem;
+
+    /* Neon Sunset Arcade — dusk over Punta Rassa */
+    --background: 0.17 0.055 285;
+    --foreground: 0.95 0.018 75;
+    --card: 0.22 0.062 288;
+    --card-foreground: 0.95 0.018 75;
+    --popover: 0.2 0.058 286;
+    --popover-foreground: 0.95 0.018 75;
+
+    --primary: 0.68 0.21 15;
+    --primary-foreground: 0.16 0.04 285;
+
+    --secondary: 0.3 0.06 288;
+    --secondary-foreground: 0.9 0.02 75;
+    --muted: 0.27 0.05 288;
+    --muted-foreground: 0.7 0.03 70;
+
+    --accent: 0.8 0.16 78;
+    --accent-foreground: 0.16 0.04 285;
+
+    --destructive: 0.6 0.23 25;
+    --destructive-foreground: 0.97 0.01 25;
+
+    --success: 0.72 0.16 165;
+    --warning: 0.82 0.16 85;
+
+    --border: 0.34 0.06 288;
+    --input: 0.34 0.06 288;
+    --ring: 0.68 0.21 15;
+
+    --chart-1: 0.68 0.21 15;
+    --chart-2: 0.8 0.16 78;
+    --chart-3: 0.72 0.14 195;
+    --chart-4: 0.62 0.2 320;
+    --chart-5: 0.72 0.16 165;
+
+    --sidebar: 0.2 0.058 286;
+    --sidebar-foreground: 0.95 0.018 75;
+    --sidebar-primary: 0.68 0.21 15;
+    --sidebar-primary-foreground: 0.16 0.04 285;
+    --sidebar-accent: 0.27 0.05 288;
+    --sidebar-accent-foreground: 0.9 0.02 75;
+    --sidebar-border: 0.34 0.06 288;
+    --sidebar-ring: 0.68 0.21 15;
+
+    /* Game-surface tokens (canvas overlays read these) */
+    /* Banded sunset sky — indigo dusk → magenta → coral → amber horizon */
+    --sky-1: 0.28 0.1 288;
+    --sky-2: 0.4 0.15 305;
+    --sky-3: 0.55 0.2 340;
+    --sky-4: 0.68 0.22 12;
+    --sky-5: 0.78 0.19 40;
+    --sunset-high: 0.42 0.14 300;
+    --sunset-mid: 0.62 0.2 5;
+    --sunset-low: 0.82 0.17 72;
+    --sun-core: 0.92 0.15 88;
+    --sun-halo: 0.86 0.16 62;
+    --water-deep: 0.3 0.09 240;
+    --water-mid: 0.42 0.11 222;
+    --water-shallow: 0.55 0.13 200;
+    --water-glint: 0.86 0.13 62;
+    --foam: 0.97 0.02 200;
+    --land-near: 0.26 0.08 300;
+    --land-far: 0.34 0.09 310;
+    --palm: 0.2 0.07 300;
+
+    --gradient-sunset: linear-gradient(
+      180deg,
+      oklch(var(--sky-1)) 0%,
+      oklch(var(--sky-2)) 26%,
+      oklch(var(--sky-3)) 48%,
+      oklch(var(--sky-4)) 68%,
+      oklch(var(--sky-5)) 84%,
+      oklch(var(--sunset-low)) 100%
+    );
+    --gradient-hud: linear-gradient(
+      180deg,
+      oklch(var(--card)) 0%,
+      oklch(var(--popover)) 100%
+    );
+    --gradient-glow: radial-gradient(
+      ellipse at 50% 100%,
+      oklch(var(--sun-halo) / 0.4) 0%,
+      transparent 70%
+    );
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    overflow: hidden;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .bg-gradient-sunset {
+    background-image: var(--gradient-sunset);
+  }
+
+  .bg-gradient-hud {
+    background-image: var(--gradient-hud);
+  }
+
+  /* Warm sunset bloom framing the arcade cabinet edge */
+  .bg-gradient-glow {
+    background-image: var(--gradient-glow);
+  }
+
+  .cabinet-frame {
+    box-shadow: inset 0 0 0 2px oklch(var(--border) / 0.7), inset 0 0 60px 10px
+      oklch(var(--sun-halo) / 0.16), 0 0 0 1px oklch(var(--background));
+  }
+
+  /* Softened arcade chrome: rounded panels with a gentle bevel and glow. */
+  .pixel-panel {
+    border: 2px solid oklch(var(--border) / 0.9);
+    border-radius: 0.75rem;
+    box-shadow: inset 0 1px 0 0 oklch(var(--foreground) / 0.14), inset 0 -2px
+      6px 0 oklch(var(--background) / 0.5), 0 6px 18px -6px
+      oklch(var(--background) / 0.8);
+  }
+
+  /* Softer panel used by the React overlays to match the smooth canvas. */
+  .soft-panel {
+    border: 1px solid oklch(var(--border) / 0.8);
+    border-radius: 1rem;
+    box-shadow: inset 0 1px 0 0 oklch(var(--foreground) / 0.12), 0 10px 30px
+      -10px oklch(var(--background) / 0.9), 0 0 24px -6px
+      oklch(var(--sun-halo) / 0.25);
+    backdrop-filter: blur(2px);
+  }
+
+  .pixel-text {
+    font-family: var(--font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 0 oklch(var(--background) / 0.85);
+  }
+
+  /* Smooth scaling so the shaded scene is not chunky or pixelated. */
+  .smooth-canvas {
+    image-rendering: auto;
+  }
+}

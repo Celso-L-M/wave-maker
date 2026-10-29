@@ -1,0 +1,19 @@
+{
+  "overview": "A single-page endless jet-ski game where you ride a swell past buoys and docks along a realistic sunset coastline.",
+  "features": [
+    "Charge and release a swell to launch the jet-ski rider",
+    "Dodge red channel buoys and wooden docks as they scroll past",
+    "Distance scoring with speed and spawn rate that scale as you go",
+    "Session high score saved and shown on the game over screen",
+    "Realistic 2.5D sunset scene with smooth water, soft foam and atmospheric depth"
+  ],
+  "category": "game",
+  "tags": [
+    "arcade",
+    "endless-runner",
+    "canvas",
+    "retro",
+    "sunset"
+  ],
+  "last_updated": "2026-10-29T01:13:14.820Z"
+}
